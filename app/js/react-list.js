@@ -38,3 +38,8 @@ var myInput = React.createClass({
 		)
 	}
 });
+
+React.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('react-component')
+);
