@@ -4,7 +4,7 @@ var myInput = React.createClass({
 			<div className="container">
 			  <div className="row">
 			    <div className="col-lg-8 col-md-8 col-sm-12 center-block">
-			      <input type="text" id="the-input" className="form-control input-lg" placeholder="Type here then press enter!">
+			      <input type="text" id="the-input" className="form-control input-lg" placeholder="Type here then press enter!" />
 			    </div>
 			  </div>
 			  <div className="row">
@@ -20,7 +20,7 @@ var myInput = React.createClass({
 			        <div className="checkbox m-bot">
 			          <span className="close-button"><i className="fa fa-close"></i></span>
 			          <label className="item-width">
-			            <input className="check" type="checkbox" value="">
+			            <input className="check" type="checkbox" value="" />
 			            The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children.
 			          </label>
 			        </div>
