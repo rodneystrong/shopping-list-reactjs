@@ -13,7 +13,7 @@ var myInput = React.createClass({
 			        <div className="checkbox m-bot">
 			          <span className="close-button"><i className="fa fa-close"></i></span>
 			          <label className="item-width">
-			            <input className="check" type="checkbox" value="">
+			            <input className="check" type="checkbox" value="" />
 			            A dress that I will only wear once
 			          </label>
 			        </div>
@@ -27,7 +27,7 @@ var myInput = React.createClass({
 			        <div className="checkbox m-bot">
 			          <span className="close-button"><i className="fa fa-close"></i></span>
 			          <label className="item-width">
-			            <input className="check" type="checkbox" value="">
+			            <input className="check" type="checkbox" value="" />
 			            Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
 			          </label>
 			        </div>
