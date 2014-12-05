@@ -1,0 +1,101 @@
+@import 'bootstrap';
+//@import 'bootstrap-responsive';
+//@import "font-awesome-compass";
+//@import 'font-awesome';
+
+/*variables*/
+body {
+	font-family: 'Lato', sans-serif;
+}
+
+.blue {
+	color: #20aae5;
+}
+
+/*layout */
+.m-bot {
+	margin-bottom: 20px;
+}
+
+header {
+	background: //top transparent blue
+				linear-gradient(
+				      rgba(32, 170, 229, 0.90), 
+				      rgba(32, 170, 229, 0.70)
+				 ),
+				//bg pattern
+				url(../img/escheresque_ste.png);
+	border-bottom: 0.25em solid #1894ca;
+	color: #fff;
+	padding: 20px 0;
+	margin-bottom: 20px;
+	h1 {
+
+	}
+	i {
+		
+	}
+	p {
+
+	}
+}
+
+.center-block {
+	float: none; /*necessary to center the element*/
+}
+
+.item-width {
+	max-width: 510px;
+}
+
+/* Set the fixed height of the footer here */
+#push {
+  height: auto;
+}
+
+footer {
+	background-color: #20aae5;
+	color: #fff;
+	height: auto;
+	.container {
+		p {
+			margin: 15px 0;
+		}
+	}
+}
+
+/*functionality styling */
+
+.check {
+	cursor: pointer;
+}
+
+.checkbox {
+	padding: 5px 0;
+}
+
+#the-input {
+	margin-bottom: 20px;
+}
+
+.container {
+	max-width: 960px;
+}
+
+.close-button {
+	float: right;
+	cursor: pointer;
+}
+
+.strikethrough {
+	text-decoration: line-through;
+}
+
+/*misc items */
+a {
+	color: #000099; /*dark blue*/
+}
+
+label {
+	font-size: 1.1em;
+}
