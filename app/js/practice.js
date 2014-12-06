@@ -1,6 +1,14 @@
 /** @jsx React.DOM */
 /*create the component and then render it */
 var ShopList = React.createClass({
+	getInitialState: function() {
+		return {
+			list: [
+				{text: "A dress I will wear only once"},
+				{text: "Louboutin shoes"}
+			]
+		}
+	},
 	render: function() {
 		return (
 			<div className="container">
@@ -17,12 +25,21 @@ var ShopList = React.createClass({
 
 //this contains the html for all the list items
 var ListContainer = React.createClass({
+	renderList: function() {
+		return (
+			this.props.list.map(function(item) {
+				return (
+					<ListItem text={this.state.item} />
+				)
+			});
+		)
+	},
 	render: function() {
 		return (
 			<div className="row">
 			  <div className="col-lg-7 col-md-7 col-sm-8 center-block">
 			    <div id="list-items">
-			    	<ListItem />
+			    	{this.renderList()}
 			    </div> {/* #list-items */}
 			  </div> 
 			</div>
@@ -30,7 +47,7 @@ var ListContainer = React.createClass({
 	}
 });
 
-//this contains the html for 
+//this contains the html for the individual list items
 var ListItem = React.createClass({
 	render: function() {
 		return (
@@ -38,7 +55,7 @@ var ListItem = React.createClass({
 			  <span className="close-button"><i className="fa fa-close"></i></span>
 			  <label className="item-width">
 			    <input className="check" type="checkbox" value="" />
-			    A dress that I will only wear once
+			    	{this.props.text}
 			  </label>
 			</div>
 		)

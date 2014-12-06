@@ -1,6 +1,14 @@
 /** @jsx React.DOM */
 /*create the component and then render it */
 var ShopList = React.createClass({displayName: 'ShopList',
+	getInitialState: function() {
+		return {
+			list: [
+				{text: "A dress I will wear only once"},
+				{text: "Louboutin shoes"}
+			]
+		}
+	},
 	render: function() {
 		return (
 			React.DOM.div({className: "container"}, 
@@ -30,7 +38,7 @@ var ListContainer = React.createClass({displayName: 'ListContainer',
 	}
 });
 
-//this contains the html for 
+//this contains the html for the individual list items
 var ListItem = React.createClass({displayName: 'ListItem',
 	render: function() {
 		return (
@@ -38,7 +46,7 @@ var ListItem = React.createClass({displayName: 'ListItem',
 			  React.DOM.span({className: "close-button"}, React.DOM.i({className: "fa fa-close"})), 
 			  React.DOM.label({className: "item-width"}, 
 			    React.DOM.input({className: "check", type: "checkbox", value: ""}), 
-			    "A dress that I will only wear once"
+			    	"A dress that I will only wear once"
 			  )
 			)
 		)
