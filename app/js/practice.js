@@ -9,15 +9,20 @@ var ShopList = React.createClass({
 			]
 		}
 	},
+	addItem: function(e) {
+		//checking the keyboard button code
+		//console.log(e.keyCode);
+		
+	},
 	render: function() {
 		return (
 			<div className="container">
 		        <div className="row">
 		          <div className="col-lg-8 col-md-8 col-sm-12 center-block">
-		            <input type="text" id="the-input" className="form-control input-lg" placeholder="Type here then press enter!" />
+		            <input onKeyDown={this.addItem} type="text" id="the-input" className="form-control input-lg" placeholder="Type here then press enter!" />
 		          </div>
 		        </div>
-		    	<ListContainer />    
+		    	<ListContainer list={this.state.list} />    
 		    </div> //.container
 		)
 	}
@@ -29,9 +34,9 @@ var ListContainer = React.createClass({
 		return (
 			this.props.list.map(function(item) {
 				return (
-					<ListItem text={this.state.item} />
+					<ListItem text={item.text} />
 				)
-			});
+			})
 		)
 	},
 	render: function() {
@@ -55,7 +60,7 @@ var ListItem = React.createClass({
 			  <span className="close-button"><i className="fa fa-close"></i></span>
 			  <label className="item-width">
 			    <input className="check" type="checkbox" value="" />
-			    	{this.props.text}
+			    	{this.props.text} {/* right here, how does it know where to go to find this prop? */}
 			  </label>
 			</div>
 		)
