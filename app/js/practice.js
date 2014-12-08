@@ -12,7 +12,11 @@ var ShopList = React.createClass({
 	addItem: function(e) {
 		//checking the keyboard button code
 		//console.log(e.keyCode);
-		
+		if(e.keyCode==13) {
+			var currentList = this.state.list;
+			currentList.unshift({text: e.target.value});
+			this.setState({list: currentList});
+		}
 	},
 	render: function() {
 		return (
@@ -32,9 +36,9 @@ var ShopList = React.createClass({
 var ListContainer = React.createClass({
 	renderList: function() {
 		return (
-			this.props.list.map(function(item) {
+			this.props.list.map(function(item) { /*item is an arbitrary name we gave for this paramter*/
 				return (
-					<ListItem text={item.text} />
+					<ListItem text={item.text} />  {/*text is a prop we made. */}
 				)
 			})
 		)
@@ -60,7 +64,7 @@ var ListItem = React.createClass({
 			  <span className="close-button"><i className="fa fa-close"></i></span>
 			  <label className="item-width">
 			    <input className="check" type="checkbox" value="" />
-			    	{this.props.text} {/* right here, how does it know where to go to find this prop? */}
+			    	{this.props.text} {/* right here, how does it know where to go to find this prop? It's because we made the 'text' prop in the ListContainer component*/}
 			  </label>
 			</div>
 		)
