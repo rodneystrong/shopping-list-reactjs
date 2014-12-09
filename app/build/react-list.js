@@ -17,6 +17,11 @@ var ShopList = React.createClass({displayName: 'ShopList',
 			this.setState({lists: lists}); /*because we returned 'list' as an object above in the 'getInitialState' function, we're setting its state in object notation here*/
 		}
 	},
+	removeItem: function(index) {
+		var lists = this.state.lists;
+		lists.splice(index,1);
+		this.setState({lists: lists});
+	},
 	render: function() {
 		return (
 			React.DOM.div({className: "container"}, 
@@ -25,7 +30,7 @@ var ShopList = React.createClass({displayName: 'ShopList',
 			      React.DOM.input({onKeyDown: this.addItem, type: "text", id: "the-input", className: "form-control input-lg", placeholder: "Type here then press enter!"})
 			    )
 			  ), 
-			  ListContainer({lists: this.state.lists})
+			  ListContainer({lists: this.state.lists, removeItem: this.removeItem})
 			)
 		)
 	}
@@ -33,7 +38,8 @@ var ShopList = React.createClass({displayName: 'ShopList',
 
 var ListContainer = React.createClass({displayName: 'ListContainer',
 	removeItem: function(index) {
-		console.log(index);
+		//console.log(index);
+		this.props.removeItem(index);
 	},
 	renderLists: function() {
 		var self = this; //doing this because we can't use 'this' inside the map function because of function scope. map is a function inside the 'renderLists' function
@@ -65,10 +71,13 @@ var ListItem = React.createClass({displayName: 'ListItem',
 		this.setState({checked: !this.state.checked}) /* huh?! */
 	},
 	removeItem: function() {
-		console.log("removeItem");
-		console.log(this.props.index);
+		//to verify the click
+		//console.log("removeItem");
+		//to verify the array index
+		//console.log(this.props.index);
 		/*in react you always work UP. You pass data from the bottom up; one-direction data flow is the react paradigm*/
 		this.props.removeItem(this.props.index);
+
 	},
 	render: function() {
 
