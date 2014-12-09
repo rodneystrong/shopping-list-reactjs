@@ -8,6 +8,11 @@ var ShopList = React.createClass({
 					],
 		} /*right here we're returning an object with 'list' as the key. important to remember here. */
 	},
+	componentDidUpdate: function(prevProps,prevState){
+		if(this.state.lists != prevState.lists){
+			//ajax update
+		}
+	},
 	addItem: function(e) {
 		//checking for what each keypress code is
 		//console.log(e.keyCode);
@@ -37,16 +42,12 @@ var ShopList = React.createClass({
 });
 
 var ListContainer = React.createClass({
-	removeItem: function(index) {
-		//console.log(index);
-		this.props.removeItem(index);
-	},
 	renderLists: function() {
 		var self = this; //doing this because we can't use 'this' inside the map function because of function scope. map is a function inside the 'renderLists' function
 		//this is a looping function (map) that will go through the 'lists' array for you
 		return this.props.lists.map(function(list, index) {
 			return (
-				<ListItem text={list.text} index={index} removeItem={self.removeItem} />
+				<ListItem text={list.text} index={index} removeItem={self.props.removeItem} />
 			)
 		}) 
 	},
