@@ -21,14 +21,12 @@ var ListContainer = React.createClass({displayName: 'ListContainer',
 			//ajax update
 		}
 	},
-	addItem: function(e) {
+	addItem: function(item) {
 		//checking for what each keypress code is
 		//console.log(e.keyCode);
-		if (e.keyCode==13) {
-			var lists = this.state.lists;
-			lists.unshift({text: e.target.value});
-			this.setState({lists: lists}); /*because we returned 'list' as an object above in the 'getInitialState' function, we're setting its state in object notation here*/
-		}
+		var lists = this.state.lists;
+		lists.unshift({text: item.text});
+		this.setState({lists: lists}); /*because we returned 'list' as an object above in the 'getInitialState' function, we're setting its state in object notation here*/
 	},
 	removeItem: function(index) {
 		var lists = this.state.lists;
@@ -47,11 +45,9 @@ var ListContainer = React.createClass({displayName: 'ListContainer',
 	render: function() {
 		return (
 			React.DOM.div({className: "container"}, 
-				React.DOM.div({className: "row"}, 
-				    React.DOM.div({className: "col-lg-8 col-md-8 col-sm-12 center-block"}, 
-				      React.DOM.input({onKeyDown: this.addItem, type: "text", id: "the-input", className: "form-control input-lg", placeholder: "Type here then press enter!"})
-				    )
-				), 
+
+				CreateItem({addItem: this.addItem}), 
+
 				React.DOM.div({className: "row"}, 
 				  React.DOM.div({className: "col-lg-7 col-md-7 col-sm-8 center-block"}, 
 				    React.DOM.div({id: "list-items"}, 
@@ -63,6 +59,21 @@ var ListContainer = React.createClass({displayName: 'ListContainer',
 		)
 	}
 });
+
+var CreateItem = React.createClass({displayName: 'CreateItem',
+	sendItem: function(e){
+		if (e.keyCode==13) {
+			this.props.addItem({text: e.target.value})	
+		}
+	},
+	render: function(){
+		return React.DOM.div({className: "row"}, 
+	    React.DOM.div({className: "col-lg-8 col-md-8 col-sm-12 center-block"}, 
+	      React.DOM.input({onKeyDown: this.sendItem, type: "text", id: "the-input", className: "form-control input-lg", placeholder: "Type here then press enter!"})
+	    )
+		)
+	}
+})
 
 var ListItem = React.createClass({displayName: 'ListItem',
 	getInitialState: function() {
