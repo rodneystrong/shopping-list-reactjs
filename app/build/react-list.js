@@ -1,5 +1,13 @@
 /** @jsx React.DOM */
 var ShopList = React.createClass({displayName: 'ShopList',
+	render: function() {
+		return (
+			  ListContainer(null)
+		)
+	}
+});
+
+var ListContainer = React.createClass({displayName: 'ListContainer',
 	getInitialState: function() {
 		return {
 			lists: [
@@ -27,38 +35,30 @@ var ShopList = React.createClass({displayName: 'ShopList',
 		lists.splice(index,1);
 		this.setState({lists: lists});
 	},
-	render: function() {
-		return (
-			React.DOM.div({className: "container"}, 
-			  React.DOM.div({className: "row"}, 
-			    React.DOM.div({className: "col-lg-8 col-md-8 col-sm-12 center-block"}, 
-			      React.DOM.input({onKeyDown: this.addItem, type: "text", id: "the-input", className: "form-control input-lg", placeholder: "Type here then press enter!"})
-			    )
-			  ), 
-			  ListContainer({lists: this.state.lists, removeItem: this.removeItem})
-			)
-		)
-	}
-});
-
-var ListContainer = React.createClass({displayName: 'ListContainer',
 	renderLists: function() {
 		var self = this; //doing this because we can't use 'this' inside the map function because of function scope. map is a function inside the 'renderLists' function
 		//this is a looping function (map) that will go through the 'lists' array for you
-		return this.props.lists.map(function(list, index) {
+		return this.state.lists.map(function(list, index) {
 			return (
-				ListItem({text: list.text, index: index, removeItem: self.props.removeItem})
+				ListItem({key: index, text: list.text, index: index, removeItem: self.removeItem})
 			)
 		}) 
 	},
 	render: function() {
 		return (
-			React.DOM.div({className: "row"}, 
-			  React.DOM.div({className: "col-lg-7 col-md-7 col-sm-8 center-block"}, 
-			    React.DOM.div({id: "list-items"}, 
-			    	this.renderLists()
-			    )
-			  )
+			React.DOM.div({className: "container"}, 
+				React.DOM.div({className: "row"}, 
+				    React.DOM.div({className: "col-lg-8 col-md-8 col-sm-12 center-block"}, 
+				      React.DOM.input({onKeyDown: this.addItem, type: "text", id: "the-input", className: "form-control input-lg", placeholder: "Type here then press enter!"})
+				    )
+				), 
+				React.DOM.div({className: "row"}, 
+				  React.DOM.div({className: "col-lg-7 col-md-7 col-sm-8 center-block"}, 
+				    React.DOM.div({id: "list-items"}, 
+				    	this.renderLists()
+				    )
+				  )
+				)
 			)
 		)
 	}
