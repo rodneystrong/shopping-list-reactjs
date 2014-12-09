@@ -1,5 +1,13 @@
 /** @jsx React.DOM */
 var ShopList = React.createClass({
+	render: function() {
+		return (
+			  <ListContainer />
+		)
+	}
+});
+
+var ListContainer = React.createClass({
 	getInitialState: function() {
 		return {
 			lists: [
@@ -13,56 +21,59 @@ var ShopList = React.createClass({
 			//ajax update
 		}
 	},
-	addItem: function(e) {
+	addItem: function(item) {
 		//checking for what each keypress code is
 		//console.log(e.keyCode);
-		if (e.keyCode==13) {
-			var lists = this.state.lists;
-			lists.unshift({text: e.target.value});
-			this.setState({lists: lists}); /*because we returned 'list' as an object above in the 'getInitialState' function, we're setting its state in object notation here*/
-		}
+		var lists = this.state.lists;
+		lists.unshift({text: item.text});
+		this.setState({lists: lists}); /*because we returned 'list' as an object above in the 'getInitialState' function, we're setting its state in object notation here*/
 	},
 	removeItem: function(index) {
 		var lists = this.state.lists;
 		lists.splice(index,1);
 		this.setState({lists: lists});
 	},
-	render: function() {
-		return (
-			<div className="container">
-			  <div className="row">
-			    <div className="col-lg-8 col-md-8 col-sm-12 center-block">
-			      <input onKeyDown={this.addItem} type="text" id="the-input" className="form-control input-lg" placeholder="Type here then press enter!" />
-			    </div>
-			  </div>
-			  <ListContainer lists={this.state.lists} removeItem={this.removeItem}/>
-			</div>
-		)
-	}
-});
-
-var ListContainer = React.createClass({
 	renderLists: function() {
 		var self = this; //doing this because we can't use 'this' inside the map function because of function scope. map is a function inside the 'renderLists' function
 		//this is a looping function (map) that will go through the 'lists' array for you
-		return this.props.lists.map(function(list, index) {
+		return this.state.lists.map(function(list, index) {
 			return (
-				<ListItem text={list.text} index={index} removeItem={self.props.removeItem} />
+				<ListItem key={index} text={list.text} index={index} removeItem={self.removeItem} />
 			)
 		}) 
 	},
 	render: function() {
 		return (
-			<div className="row">
-			  <div className="col-lg-7 col-md-7 col-sm-8 center-block">
-			    <div id="list-items">
-			    	{this.renderLists()}
-			    </div>
-			  </div>
+			<div className="container">
+
+				<CreateItem addItem={this.addItem} />
+
+				<div className="row">
+				  <div className="col-lg-7 col-md-7 col-sm-8 center-block">
+				    <div id="list-items">
+				    	{this.renderLists()}
+				    </div>
+				  </div>
+				</div>
 			</div>
 		)
 	}
 });
+
+var CreateItem = React.createClass({
+	sendItem: function(e){
+		if (e.keyCode==13) {
+			this.props.addItem({text: e.target.value})	
+		}
+	},
+	render: function(){
+		return <div className="row">
+	    <div className="col-lg-8 col-md-8 col-sm-12 center-block">
+	      <input onKeyDown={this.sendItem} type="text" id="the-input" className="form-control input-lg" placeholder="Type here then press enter!" />
+	    </div>
+		</div>
+	}
+})
 
 var ListItem = React.createClass({
 	getInitialState: function() {
