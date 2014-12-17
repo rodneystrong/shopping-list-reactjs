@@ -36,8 +36,10 @@ var ShopList = React.createClass({
 var ListContainer = React.createClass({
 	renderList: function() {
 		return (
+			//item is an arbitrary name we gave for this paramter
 			this.props.list.map(function(item) {
 				return (
+					//text is a prop we made. 
 					<ListItem text={item.text} /> 
 				)
 			})
