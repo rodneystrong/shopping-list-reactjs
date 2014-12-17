@@ -11,7 +11,7 @@ var ShopList = React.createClass({displayName: 'ShopList',
 	},
 	addItem: function(e) {
 		//checking the keyboard button code
-		//console.log(e.keyCode);
+		console.log(e.keyCode);
 		if(e.keyCode==13) {
 			var list = this.state.list;
 			list.unshift({text: e.target.value});
@@ -27,7 +27,7 @@ var ShopList = React.createClass({displayName: 'ShopList',
 		          )
 		        ), 
 		    	ListContainer({list: this.state.list})
-		    ) //.container
+		    ) /*.container*/
 		)
 	}
 });
